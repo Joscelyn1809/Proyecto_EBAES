@@ -1,6 +1,7 @@
 package com.example.proyecto_ebaes.ui
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,6 +33,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -93,6 +95,8 @@ fun LoginAppBar(isDarkMode: MutableState<Boolean>) {
 fun ScreenContent(navController: NavHostController) {
     val correoState = remember { mutableStateOf(TextFieldValue()) }
     val passwordState = remember { mutableStateOf(TextFieldValue()) }
+
+    val context = LocalContext.current
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -158,7 +162,10 @@ fun ScreenContent(navController: NavHostController) {
             ) {
 
                 Button(
-                    onClick = { navController.navigate(Screen.MainScreen.route) },
+                    onClick = {
+                        Toast.makeText(context, "Login correcto", Toast.LENGTH_SHORT).show()
+                        navController.navigate(Screen.MainScreen.route)
+                    },
                     modifier = Modifier.width(125.dp)
                 ) {
                     Text(text = "Login", fontSize = 20.sp)
