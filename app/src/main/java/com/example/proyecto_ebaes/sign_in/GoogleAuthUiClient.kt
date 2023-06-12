@@ -3,6 +3,7 @@ package com.example.proyecto_ebaes.sign_in
 import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
+import android.util.Log
 import com.example.proyecto_ebaes.R
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInRequest.GoogleIdTokenRequestOptions
@@ -27,6 +28,7 @@ class GoogleAuthUiClient(
                 buildSignInRequest()
             ).await()
         } catch (e: Exception) {
+            Log.i("HORROR", "Error en signIn")
             e.printStackTrace()
             if(e is CancellationException) throw e
             null
@@ -35,7 +37,7 @@ class GoogleAuthUiClient(
         return result?.pendingIntent?.intentSender
     }
 
-    suspend fun getSignInResultFromIntent(intent: Intent): SignInResult {
+    suspend fun getSignInWithIntent(intent: Intent): SignInResult {
         val credential = oneTapClient.getSignInCredentialFromIntent(intent)
         val googleIdToken = credential.googleIdToken
         val googleCredentials = GoogleAuthProvider.getCredential(googleIdToken, null)
@@ -54,6 +56,7 @@ class GoogleAuthUiClient(
                 errorMessage = null
             )
         } catch (e: Exception) {
+            Log.i("HORROR", "Error en signInWithIntent")
             e.printStackTrace()
             if(e is CancellationException) throw e
             SignInResult(null, e.message)

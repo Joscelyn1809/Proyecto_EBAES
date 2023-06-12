@@ -64,7 +64,7 @@ fun LoginScreen(isDarkMode: MutableState<Boolean>, navController: NavHostControl
         topBar = { LoginAppBar(isDarkMode) },
         content = {
             Box(modifier = Modifier.fillMaxSize()) {
-                ScreenContent(navController)
+                ScreenContent(navController, onSignInClick)
             }
         }
     )
@@ -102,7 +102,7 @@ fun LoginAppBar(isDarkMode: MutableState<Boolean>) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenContent(navController: NavHostController) {
+fun ScreenContent(navController: NavHostController, onSignInClick: () -> Unit) {
     val correoState = remember { mutableStateOf(TextFieldValue()) }
     val passwordState = remember { mutableStateOf(TextFieldValue()) }
 
@@ -173,8 +173,9 @@ fun ScreenContent(navController: NavHostController) {
 
                 Button(
                     onClick = {
-                        Toast.makeText(context, "Login correcto", Toast.LENGTH_SHORT).show()
-                        navController.navigate(Screen.MainScreen.route)
+                        //Toast.makeText(context, "Login correcto", Toast.LENGTH_SHORT).show()
+                        onSignInClick()
+                        //navController.navigate(Screen.MainScreen.route)
                     },
                     modifier = Modifier.width(125.dp)
                 ) {
