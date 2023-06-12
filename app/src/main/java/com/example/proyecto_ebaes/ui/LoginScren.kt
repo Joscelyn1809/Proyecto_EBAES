@@ -50,7 +50,6 @@ fun LoginScreen(isDarkMode: MutableState<Boolean>, navController: NavHostControl
     LaunchedEffect(key1 = state.signInError) {
         state.signInError?.let { error ->
             Toast.makeText(context, error, Toast.LENGTH_LONG).show()
-
         }
     }
 
@@ -205,8 +204,6 @@ fun ScreenContent(navController: NavHostController, onSignInClick: () -> Unit) {
                 }
                  */
             }
-
-
         }
     }
 }

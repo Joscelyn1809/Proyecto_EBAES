@@ -1,6 +1,7 @@
 package com.example.proyecto_ebaes.ui
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -11,7 +12,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -35,15 +38,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.proyecto_ebaes.R
+import com.example.proyecto_ebaes.data.firebaseData.AlumnoFb
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(navController: NavHostController) {
+fun DetailScreen(
+    navController: NavHostController,
+    alumno: AlumnoFb,
+    //sharedViewModel: SharedViewModel
+) {
     Scaffold(
         topBar = { DetailsAppBar(navController) },
         content = {
-            DetailContent(navController)
+            DetailContent(navController, alumno)
         }
     )
 }
@@ -73,7 +81,13 @@ fun DetailsAppBar(navController: NavHostController) {
 }
 
 @Composable
-fun DetailContent(navController: NavHostController) {
+fun DetailContent(
+    navController: NavHostController,
+    alumno: AlumnoFb
+) {
+
+    Log.d("alumno", "${alumno}")
+    //val alumno = sharedViewModel.alumno.value
 
     val context = LocalContext.current
     val boxBackground = Color(0x4196979A)
@@ -105,19 +119,21 @@ fun DetailContent(navController: NavHostController) {
                 Spacer(Modifier.size(8.dp))
 
                 Text(
-                    text = "Joscelyn Pauleth Covarrubias Murrieta",
+                    text = alumno.nombreCompleto,
                     textAlign = TextAlign.Center,
                     lineHeight = 30.sp,
                     fontWeight = FontWeight.Bold,
                     fontSize = 30.sp
                 )
+
                 Spacer(modifier = Modifier.size(5.dp))
                 Text(
-                    text = "18/Sep/2001",
+                    text = "${alumno.fechaNacimiento}",
                     fontSize = 15.sp,
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Light
                 )
+
             }
         }
 
@@ -126,66 +142,71 @@ fun DetailContent(navController: NavHostController) {
                 .fillMaxWidth()
                 .fillMaxWidth()
                 .padding(15.dp)
+                .verticalScroll(rememberScrollState())
                 .clip(RoundedCornerShape(10.dp))
                 .background(boxBackground)
         ) {
             Column(Modifier.padding(10.dp)) {
+
                 Text(
-                    text = "Correo",
+                    text = "${alumno.correoElectronico}",
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.Start,
+                    fontWeight = FontWeight.Light
+                )
+
+                Text(
+                    text = "Universidad: ${alumno.universidad}",
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.Start,
+                    fontWeight = FontWeight.Light
+                )
+
+                Text(
+                    text = "Carrera: ${alumno.carrera}",
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.Start,
+                    fontWeight = FontWeight.Light
+                )
+
+                Text(
+                    text = "${alumno.ciudad}, ${alumno.estado}",
                     fontSize = 18.sp,
                     textAlign = TextAlign.Start,
                     fontWeight = FontWeight.Light
                 )
                 Text(
-                    text = "Universidad",
+                    text = "Promedio: ${alumno.promedio}",
                     fontSize = 18.sp,
                     textAlign = TextAlign.Start,
                     fontWeight = FontWeight.Light
                 )
                 Text(
-                    text = "Carrera",
+                    text = "Semestre: ${alumno.semestre}",
                     fontSize = 18.sp,
                     textAlign = TextAlign.Start,
                     fontWeight = FontWeight.Light
                 )
                 Text(
-                    text = "Estado, Ciudad",
+                    text = "Sexo: ${alumno.sexo}",
                     fontSize = 18.sp,
                     textAlign = TextAlign.Start,
                     fontWeight = FontWeight.Light
                 )
                 Text(
-                    text = "Promedio",
+                    text = "Estado Civil: ${alumno.estadoCivil}",
                     fontSize = 18.sp,
                     textAlign = TextAlign.Start,
                     fontWeight = FontWeight.Light
                 )
                 Text(
-                    text = "Semestre",
+                    text = "Transtorno: ${alumno.trastorno}",
                     fontSize = 18.sp,
                     textAlign = TextAlign.Start,
                     fontWeight = FontWeight.Light
                 )
                 Text(
-                    text = "Sexo",
-                    fontSize = 18.sp,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Light
-                )
-                Text(
-                    text = "Estado Civil",
-                    fontSize = 18.sp,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Light
-                )
-                Text(
-                    text = "Transtorno",
-                    fontSize = 18.sp,
-                    textAlign = TextAlign.Start,
-                    fontWeight = FontWeight.Light
-                )
-                Text(
-                    text = "Tratamiento",
+                    text = "Tratamiento: ${alumno.tratamiento}",
                     fontSize = 18.sp,
                     textAlign = TextAlign.Start,
                     fontWeight = FontWeight.Light

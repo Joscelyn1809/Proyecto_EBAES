@@ -23,6 +23,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.room.Room
+import com.example.proyecto_ebaes.data.firebaseData.AlumnoFb
 import com.example.proyecto_ebaes.data.room.StudentsDB
 import com.example.proyecto_ebaes.data.room.viewModels.StudentViewModel
 import com.example.proyecto_ebaes.navigation.Screen
@@ -32,6 +33,7 @@ import com.example.proyecto_ebaes.ui.DetailScreen
 import com.example.proyecto_ebaes.ui.ListScreen
 import com.example.proyecto_ebaes.ui.LoginScreen
 import com.example.proyecto_ebaes.ui.MainScreen
+import com.example.proyecto_ebaes.ui.SharedViewModel
 import com.example.proyecto_ebaes.ui.theme.Proyecto_EBAESTheme
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.launch
@@ -132,7 +134,8 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable(route = Screen.DetailScreen.route) {
-                        DetailScreen(navController)
+                        val sharedViewModel: SharedViewModel = viewModel()
+                        DetailScreen(navController, AlumnoFb())
                     }
                 }
                 //LoginScreen(isDarkMode)
