@@ -28,6 +28,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -45,11 +46,20 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.proyecto_ebaes.R
 import com.example.proyecto_ebaes.navigation.Screen
+import com.example.proyecto_ebaes.sign_in.SignInState
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(isDarkMode: MutableState<Boolean>, navController: NavHostController) {
+fun LoginScreen(isDarkMode: MutableState<Boolean>, navController: NavHostController, state: SignInState, onSignInClick: () -> Unit) {
+    val context = LocalContext.current
+    LaunchedEffect(key1 = state.signInError) {
+        state.signInError?.let { error ->
+            Toast.makeText(context, error, Toast.LENGTH_LONG).show()
+
+        }
+    }
+
     Scaffold(
         topBar = { LoginAppBar(isDarkMode) },
         content = {

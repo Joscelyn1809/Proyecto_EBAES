@@ -76,6 +76,8 @@ dependencies {
 
     //Add all firebase services dependencies needed
     implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
 
-
+    //Google services
+    implementation 'com.google.android.gms:play-services-auth:20.5.0'
 }
