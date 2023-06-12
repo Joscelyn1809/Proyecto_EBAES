@@ -18,7 +18,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.proyecto_ebaes.navigation.Screen
-import com.example.proyecto_ebaes.navigation.SetupNavGraph
 import com.example.proyecto_ebaes.sign_in.GoogleAuthUiClient
 import com.example.proyecto_ebaes.sign_in.SignInViewModel
 import com.example.proyecto_ebaes.ui.DetailScreen
@@ -49,8 +48,8 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = Screen.Login.route) {
 
                     composable(route = Screen.Login.route){
-                        val viewModel = viewModel<SignInViewModel>()
-                        val state by viewModel.state.collectAsState()
+                        val signInViewModel = viewModel<SignInViewModel>()
+                        val signInState by signInViewModel.state.collectAsState()
 
                         val launcher = rememberLauncherForActivityResult(
                             contract = ActivityResultContracts.StartIntentSenderForResult(),
@@ -60,20 +59,19 @@ class MainActivity : ComponentActivity() {
                                         val signInResult = googleAuthUiClient.getSignInWithIntent(
                                             intent = result.data ?: return@launch
                                         )
-
-                                        viewModel.onSignInResult(signInResult)
+                                        signInViewModel.onSignInResult(signInResult)
                                     }
                                 }
 
                             })
 
-                        LaunchedEffect(key1 = state.isSignInSuccessful) {
-                            if (state.isSignInSuccessful) {
+                        LaunchedEffect(key1 = signInState.isSignInSuccessful) {
+                            if (signInState.isSignInSuccessful) {
                                 Toast.makeText(applicationContext, "Sign in exitoso", Toast.LENGTH_SHORT).show()
                             }
                         }
 
-                        LoginScreen(isDarkMode = isDarkMode, navController, state) {
+                        LoginScreen(isDarkMode = isDarkMode, navController, signInState) {
                             lifecycleScope.launch{
                                 val signInIntentSender = googleAuthUiClient.signIn()
                                 launcher.launch(
