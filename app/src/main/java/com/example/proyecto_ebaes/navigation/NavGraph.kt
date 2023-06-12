@@ -1,5 +1,6 @@
 package com.example.proyecto_ebaes.navigation
 
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.navigation.NavHostController
@@ -11,7 +12,11 @@ import com.example.proyecto_ebaes.ui.LoginScreen
 import com.example.proyecto_ebaes.ui.MainScreen
 
 @Composable
-fun SetupNavGraph(navController: NavHostController, isDarkMode: MutableState<Boolean>) {
+fun SetupNavGraph(
+    navController: NavHostController,
+    isDarkMode: MutableState<Boolean>,
+    windowSize: WindowSizeClass
+) {
     NavHost(navController = navController, startDestination = Screen.Login.route) {
 
         composable(route = Screen.Login.route){
@@ -23,7 +28,7 @@ fun SetupNavGraph(navController: NavHostController, isDarkMode: MutableState<Boo
         }
 
         composable(route = Screen.ListScreen.route){
-            ListScreen(navController)
+            ListScreen(navController, windowSize)
         }
 
         composable(route = Screen.DetailScreen.route){

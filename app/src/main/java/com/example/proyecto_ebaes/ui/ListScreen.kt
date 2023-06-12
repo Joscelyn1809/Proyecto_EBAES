@@ -30,6 +30,8 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -48,14 +50,15 @@ import androidx.navigation.NavHostController
 import com.example.proyecto_ebaes.R
 import com.example.proyecto_ebaes.navigation.Screen
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun ListScreen(navController: NavHostController) {
+fun ListScreen(navController: NavHostController, windowSize: WindowSizeClass) {
     Scaffold(
         topBar = { ListAppBar(navController) },
         content = {
-            ListContent(navController)
+            AdaptableList(windowSize.widthSizeClass, navController)
+            //ListContent(navController, windowSize)
         }
     )
 }
@@ -66,7 +69,7 @@ fun ListAppBar(navController: NavHostController) {
     TopAppBar(
         title = {
             Text(
-                text = "", color = MaterialTheme.colorScheme.onBackground
+                text = "Alumnado", color = MaterialTheme.colorScheme.onBackground
             )
         },
         navigationIcon = {
@@ -85,7 +88,63 @@ fun ListAppBar(navController: NavHostController) {
 }
 
 @Composable
-fun ListContent(navController: NavHostController) {
+fun AdaptableList(widthSizeClass: WindowWidthSizeClass, navController: NavHostController) {
+    val modo = remember {
+        mutableStateOf(0)
+    }
+    when (widthSizeClass) {
+
+        WindowWidthSizeClass.Compact -> {
+            modo.value = 1
+            ListContent(navController = navController, modo = modo.value)
+        }
+
+        WindowWidthSizeClass.Medium -> {
+            modo.value = 1
+            ListContent(navController = navController, modo = modo.value)
+        }
+
+        WindowWidthSizeClass.Expanded -> {
+            modo.value = 2
+            HorizontalLayout(navController, modo.value)
+        }
+
+        else -> {
+            ListContent(navController = navController, modo = modo.value)
+        }
+    }
+}
+
+@Composable
+fun HorizontalLayout(navController: NavHostController, modo: Int) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f)
+        ) {
+            ListContent(navController = navController, modo = modo)
+        }
+        Spacer(modifier = Modifier.padding(end = 5.dp))
+        Box(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f)
+        ) {
+            DetailContent(navController = navController)
+        }
+    }
+}
+
+
+@Composable
+fun ListContent(navController: NavHostController, modo: Int) {
     val options = listOf<String>("Todo", "Nombre", "Apellido", "Mujer", "Hombre")
     val selectedOption = remember { mutableStateOf(options.first()) }
 
@@ -102,7 +161,7 @@ fun ListContent(navController: NavHostController) {
         ) {
             FilterOptions(options = options, selectedOption = selectedOption)
             //Spacer(modifier = Modifier.size(8.dp))
-            Lista(navController)
+            Lista(navController, modo)
         }
 
     }
@@ -117,7 +176,7 @@ class Alumno(
 }
 
 @Composable
-fun Lista(navController: NavHostController) {
+fun Lista(navController: NavHostController, modo: Int) {
     val alumnos = listOf<Alumno>(
         Alumno(
             "Joscelyn Pauleth Covarrubias Murrieta",
@@ -146,7 +205,10 @@ fun Lista(navController: NavHostController) {
                         .padding(horizontal = 15.dp)
                         .clip(RoundedCornerShape(10.dp))
                         .background(boxBackground)
-                        .clickable { navController.navigate(Screen.DetailScreen.route) },
+                        .clickable {
+                            if (modo == 1) navController.navigate(Screen.DetailScreen.route)
+                            else if (modo == 2) {/*TODO() Mostrar solo la informacion del alumno que se clickea*/}
+                        },
                     contentAlignment = Alignment.CenterStart
                 ) {
                     Column(Modifier.padding(10.dp)) {
@@ -201,7 +263,7 @@ fun FilterOptions(
             modifier = Modifier.fillMaxWidth(),
             colors = TextFieldDefaults.textFieldColors(
                 textColor = MaterialTheme.colorScheme.onBackground,
-                placeholderColor = MaterialTheme.colorScheme.onSurface,
+                focusedLabelColor = MaterialTheme.colorScheme.onTertiary,
                 containerColor = MaterialTheme.colorScheme.surface
             )
         )

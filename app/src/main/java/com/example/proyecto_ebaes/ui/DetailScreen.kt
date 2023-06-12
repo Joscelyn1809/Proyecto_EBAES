@@ -11,9 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -56,7 +54,7 @@ fun DetailsAppBar(navController: NavHostController) {
     TopAppBar(
         title = {
             Text(
-                text = "", color = MaterialTheme.colorScheme.onBackground
+                text = "Detalles del alumno", color = MaterialTheme.colorScheme.onBackground
             )
         },
         navigationIcon = {
@@ -83,8 +81,7 @@ fun DetailContent(navController: NavHostController) {
     Column(
         Modifier
             .fillMaxSize()
-            .padding(top = 60.dp)
-            .verticalScroll(rememberScrollState()),
+            .padding(top = 60.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
@@ -110,6 +107,7 @@ fun DetailContent(navController: NavHostController) {
                 Text(
                     text = "Joscelyn Pauleth Covarrubias Murrieta",
                     textAlign = TextAlign.Center,
+                    lineHeight = 30.sp,
                     fontWeight = FontWeight.Bold,
                     fontSize = 30.sp
                 )
@@ -210,7 +208,7 @@ fun DetailContent(navController: NavHostController) {
                 Text(
                     text = "Guardar alumno",
                     fontSize = 15.sp,
-                    color = MaterialTheme.colorScheme.onSecondary
+                    color = MaterialTheme.colorScheme.onTertiary
                 )
             }
         }

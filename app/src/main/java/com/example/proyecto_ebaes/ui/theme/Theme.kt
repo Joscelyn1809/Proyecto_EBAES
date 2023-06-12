@@ -23,7 +23,7 @@ private val DarkColorScheme = darkColorScheme(
     surface = TextFieldBlue,
     onPrimary = WhiteBackgroundText,
     onSecondary = BlackBackgroundText,
-    onTertiary = WhiteBackgroundText,
+    onTertiary = BlackBackgroundText,
     onBackground = BlackBackgroundText,
     onSurface = SecondaryText,
 )
@@ -36,7 +36,7 @@ private val LightColorScheme = lightColorScheme(
     surface = TextFieldBlue,
     onPrimary = WhiteBackgroundText,
     onSecondary = WhiteBackgroundText,
-    onTertiary = WhiteBackgroundText,
+    onTertiary = BlackBackgroundText,
     onBackground = WhiteBackgroundText,
     onSurface = SecondaryText,
 

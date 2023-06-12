@@ -47,7 +47,7 @@ fun MainAppBar(navController: NavHostController) {
     TopAppBar(
         title = {
             Text(
-                text = "", color = MaterialTheme.colorScheme.onBackground
+                text = "Menú", color = MaterialTheme.colorScheme.onBackground
             )
         },
         navigationIcon = {
@@ -84,9 +84,8 @@ fun MainContent(navController: NavHostController) {
                     text = "Alumnos",
                     fontSize = 20.sp,
                     textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = MaterialTheme.colorScheme.onTertiary
                 )
-
             }
 
             Spacer(modifier = Modifier.size(8.dp))
@@ -100,9 +99,8 @@ fun MainContent(navController: NavHostController) {
                     text = "Alumnos observados",
                     fontSize = 20.sp,
                     textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = MaterialTheme.colorScheme.onTertiary
                 )
-
             }
         }
     }
