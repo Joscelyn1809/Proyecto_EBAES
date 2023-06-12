@@ -1,12 +1,19 @@
 package com.example.proyecto_ebaes.navigation
 
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
+import android.app.Activity.RESULT_OK
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.proyecto_ebaes.data.room.StudentState
+import com.example.proyecto_ebaes.sign_in.SignInViewModel
 import com.example.proyecto_ebaes.ui.DetailScreen
 import com.example.proyecto_ebaes.ui.ListScreen
 import com.example.proyecto_ebaes.ui.LoginScreen
@@ -37,5 +44,7 @@ fun SetupNavGraph(
             DetailScreen(navController)
         }
     }
+}
+fun SetupNavGraph(navController: NavHostController, isDarkMode: MutableState<Boolean>) {
 
 }

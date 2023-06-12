@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "664327265619",
+    "project_id": "aeu-uabc",
+    "storage_bucket": "aeu-uabc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:664327265619:android:85b4aff48f1b50645815a6",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_ebaes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "664327265619-l8brpsvj6pgek7b6mjjemepon1oo6ckn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtqCXMa-XF2jBIQiY3r_d1Q-WADhJx6i0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "664327265619-l8brpsvj6pgek7b6mjjemepon1oo6ckn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "664327265619-gut0shh0e9cjp4uu23u6j5f4jprlaidr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.benjabolanos.EBAES-iOS"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:664327265619:android:e48ba162d48426945815a6",
+        "android_client_info": {
+          "package_name": "uabc.ic.benjaminbolanos.paeu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "664327265619-flfs74qg485lp794br6gs6tp8eisnis0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uabc.ic.benjaminbolanos.paeu",
+            "certificate_hash": "7b46ed4632888f48f5bc6e2503d2c3e0efe0c272"
+          }
+        },
+        {
+          "client_id": "664327265619-qlcmjavp763djbvn9q4618u87i2rp3ut.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uabc.ic.benjaminbolanos.paeu",
+            "certificate_hash": "f9043c384eb4c5c74bf742db8711d08c7c7e9a73"
+          }
+        },
+        {
+          "client_id": "664327265619-rfgqu3mm8unbop9o6272cc97qn0ecvko.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uabc.ic.benjaminbolanos.paeu",
+            "certificate_hash": "58191979e19ac2d5052334b6c46cbd27f028c9f4"
+          }
+        },
+        {
+          "client_id": "664327265619-l8brpsvj6pgek7b6mjjemepon1oo6ckn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtqCXMa-XF2jBIQiY3r_d1Q-WADhJx6i0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "664327265619-l8brpsvj6pgek7b6mjjemepon1oo6ckn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "664327265619-gut0shh0e9cjp4uu23u6j5f4jprlaidr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.benjabolanos.EBAES-iOS"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
