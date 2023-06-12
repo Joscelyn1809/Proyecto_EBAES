@@ -145,7 +145,7 @@ fun HorizontalLayout(navController: NavHostController, modo: Int) {
 
 @Composable
 fun ListContent(navController: NavHostController, modo: Int) {
-    val options = listOf<String>("Todo", "Nombre", "Apellido", "Mujer", "Hombre")
+    val options = listOf<String>("Todo", "Nombre", "Mujer", "Hombre")
     val selectedOption = remember { mutableStateOf(options.first()) }
 
     Box(
