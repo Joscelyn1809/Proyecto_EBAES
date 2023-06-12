@@ -26,6 +26,8 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -95,8 +97,8 @@ fun LoginAppBar(isDarkMode: MutableState<Boolean>) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenContent(navController: NavHostController, onSignInClick: () -> Unit) {
-    val correoState = remember { mutableStateOf(TextFieldValue()) }
-    val passwordState = remember { mutableStateOf(TextFieldValue()) }
+    //val correoState = remember { mutableStateOf(TextFieldValue()) }
+    //val passwordState = remember { mutableStateOf(TextFieldValue()) }
 
     val context = LocalContext.current
 
